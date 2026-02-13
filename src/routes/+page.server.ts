@@ -1,4 +1,5 @@
 import { redirect } from "@sveltejs/kit";
+import { PUBLIC_SITE_URL } from '$env/static/public';
 
 export const load = async ({ locals }) => {
     const session = await locals.safeGetSession();
@@ -99,7 +100,7 @@ export const actions = {
         const { data, error } = await locals.supabase.auth.signInWithOAuth({
             provider: 'twitch',
             options: {
-                redirectTo: `${url.origin}/api/auth/callback`,
+                redirectTo: `${PUBLIC_SITE_URL}/api/auth/callback`,
             },
         });
 
